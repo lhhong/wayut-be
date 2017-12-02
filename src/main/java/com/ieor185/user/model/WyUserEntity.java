@@ -15,7 +15,7 @@ import java.util.Date;
         @Index(name="usernameIndex", columnList = "username", unique = true),
         @Index(name="userEmailIndex", columnList = "email", unique = false)
 })
-public class ClefUserEntity implements ClefUser {
+public class WyUserEntity implements WyUser {
    @Id
    @GeneratedValue
    private long id;
@@ -67,11 +67,11 @@ public class ClefUserEntity implements ClefUser {
    @Temporal(TemporalType.TIMESTAMP)
    private Date updatedTime;
 
-   public ClefUserEntity(ClefUser user) {
+   public WyUserEntity(WyUser user) {
       copy(user);
    }
 
-   public ClefUserEntity() {
+   public WyUserEntity() {
 
    }
 

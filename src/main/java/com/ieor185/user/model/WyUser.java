@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by xschen on 24/12/2016.
  */
-public interface ClefUser {
+public interface WyUser {
 
 	String getAuthenticationSource();
 
@@ -69,7 +69,7 @@ public interface ClefUser {
 
    String getDescription();
 
-   default void copyProfile(ClefUser rhs){
+   default void copyProfile(WyUser rhs){
       setCreatedBy(rhs.getCreatedBy());
       setCreatedTime(rhs.getCreatedTime());
       setEmail(rhs.getEmail());
@@ -85,7 +85,7 @@ public interface ClefUser {
       setDescription(rhs.getDescription());
    }
 
-   default void copy(ClefUser rhs) {
+   default void copy(WyUser rhs) {
       copyProfile(rhs);
       setId(rhs.getId());
    }

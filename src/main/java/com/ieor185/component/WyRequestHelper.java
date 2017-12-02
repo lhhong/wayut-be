@@ -16,7 +16,7 @@ import java.util.Locale;
  * Created by xschen on 21/12/2016.
  */
 @Component
-public class ClefRequestHelper {
+public class WyRequestHelper {
 
    private static final List<String> supportedLanguages = Arrays.asList("en", "sa");
 

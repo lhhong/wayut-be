@@ -1,8 +1,8 @@
 package com.ieor185.config;
 
 
-import com.ieor185.user.service.ClefUserDetailService;
-import com.ieor185.user.service.ClefUserService;
+import com.ieor185.user.service.WyUserDetailService;
+import com.ieor185.user.service.WyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,10 +36,10 @@ import java.util.List;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Autowired
-   private ClefUserDetailService clefUserDetailService;
+   private WyUserDetailService wyUserDetailService;
 
    @Autowired
-   private ClefUserService clefUserService;
+   private WyUserService wyUserService;
 
    @Autowired
    private OAuth2ClientContext clientContext;
@@ -57,12 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
       final OpenIdConnectFilter googleFilter = new OpenIdConnectFilter("/google-login");
       OAuth2RestTemplate googleRestTemplate = new OAuth2RestTemplate(googleClientConfig, clientContext);
-      googleFilter.setComponents(googleRestTemplate, clefUserDetailService, clefUserService,"google");
+      googleFilter.setComponents(googleRestTemplate, wyUserDetailService, wyUserService,"google");
       filters.add(googleFilter);
 
       final OpenIdConnectFilter facebookFilter = new OpenIdConnectFilter("/facebook-login");
       OAuth2RestTemplate facebookRestTemplate = new OAuth2RestTemplate(facebookClientConfig, clientContext);
-      facebookFilter.setComponents(facebookRestTemplate, clefUserDetailService, clefUserService,"facebook");
+      facebookFilter.setComponents(facebookRestTemplate, wyUserDetailService, wyUserService,"facebook");
       filters.add(facebookFilter);
 
       compositeFilter.setFilters(filters);
@@ -83,56 +83,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic()
 //            .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/post-login"))
 
-               .and()
+            .and()
             .authorizeRequests()
-               .antMatchers("/js/admin/**").hasAnyRole("ADMIN")
-               .antMatchers("/admin/**").hasAnyRole("ADMIN")
-               .antMatchers("/js/user/**").hasAnyRole("USER")
-               .antMatchers("/user/**").hasAnyRole("USER")
-               .antMatchers("/js/commons/**").permitAll()
-               .antMatchers("/commons/**").permitAll()
+            .antMatchers("/**").permitAll()
 
-               .antMatchers("/css/**").permitAll()
-               .antMatchers("/img/**").permitAll()
-               .antMatchers("/libs/**").permitAll()
-/*
-//              .antMatchers("/js/client/**").hasAnyRole("USER", "ADMIN")
-              .antMatchers("/js/main/**").permitAll()
-              .antMatchers("/fonts/*.*").permitAll()
-              .antMatchers("/signup").permitAll()
-              .antMatchers("/google-login").permitAll()
-              .antMatchers("/locales").permitAll()
-              .antMatchers("/locales/**").permitAll()
-              .antMatchers("/privacy-policy").permitAll()
-              .antMatchers("/change-locale").permitAll()
-              .antMatchers("/link-cache").permitAll()
-              .antMatchers("/signup-success").permitAll()
-              .antMatchers("/terms-of-use").permitAll()
-              .antMatchers("/contact-us").permitAll()
-              .antMatchers("/forgot-password").permitAll()
-              .antMatchers("/about-us").permitAll()
-              .antMatchers("/terms-of-use-en").permitAll()
-              .antMatchers("/main/**").permitAll()
-              */
-              .antMatchers("/**").permitAll()
-
-                .anyRequest().authenticated()
-                .and()
-              .formLogin()
-                .loginPage("/_home/login")
-                .loginPage("/_home/login.view")
-                .defaultSuccessUrl("/")
-                .permitAll()
-                .and()
-              .logout()
-                .logoutUrl("/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .logoutSuccessUrl("/")
-                .permitAll()
-                .and()
-              .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/_home/login")
+            .loginPage("/_home/login.view")
+            .defaultSuccessUrl("/")
+            .permitAll()
+            .and()
+            .logout()
+            .logoutUrl("/logout")
+            .clearAuthentication(true)
+            .invalidateHttpSession(true)
+            .logoutSuccessUrl("/")
+            .permitAll()
+            .and()
+            .csrf()
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
    }
 
    @Autowired
@@ -140,8 +111,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Autowired
    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-      auth.userDetailsService(clefUserDetailService)
-              .passwordEncoder(passwordEncoder);
+      auth.userDetailsService(wyUserDetailService)
+            .passwordEncoder(passwordEncoder);
    }
 
 }

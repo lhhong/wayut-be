@@ -12,21 +12,21 @@ import java.util.List;
 /**
  * Created by xschen on 11/12/2016.
  */
-public class ClefUserDetails implements UserDetails {
+public class WyUserDetails implements UserDetails {
 
-   private ClefUser user;
+   private WyUser user;
 
    private List<GrantedAuthority> authorities;
 
    private OAuth2AccessToken token;
 
 
-   public ClefUserDetails(ClefUser user, String roles) {
+   public WyUserDetails(WyUser user, String roles) {
       this.user = user;
       authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
    }
 
-   public ClefUserDetails(OAuth2AccessToken token, ClefUser user) {
+   public WyUserDetails(OAuth2AccessToken token, WyUser user) {
       this.token = token;
       this.user = user;
       authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRoles());
@@ -50,7 +50,7 @@ public class ClefUserDetails implements UserDetails {
    public boolean isSuperUser() { return user.isSuperUser(); }
 
 
-   public ClefUser getUser() {
+   public WyUser getUser() {
       return user;
    }
 

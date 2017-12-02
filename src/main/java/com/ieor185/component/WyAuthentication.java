@@ -1,8 +1,8 @@
 package com.ieor185.component;
 
 
-import com.ieor185.user.model.ClefUser;
-import com.ieor185.user.model.ClefUserDetails;
+import com.ieor185.user.model.WyUser;
+import com.ieor185.user.model.WyUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -19,9 +19,9 @@ import java.util.Optional;
  * Created by xschen on 21/12/2016.
  */
 @Component
-public class ClefAuthentication {
+public class WyAuthentication {
 
-   private static final Logger logger = LoggerFactory.getLogger(ClefAuthentication.class);
+   private static final Logger logger = LoggerFactory.getLogger(WyAuthentication.class);
 
    public boolean hasRole(Authentication authentication, String role) {
       Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -34,33 +34,33 @@ public class ClefAuthentication {
       return false;
    }
 
-   public Optional<ClefUserDetails> getCurrentUser() {
+   public Optional<WyUserDetails> getCurrentUser() {
 
-      if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof ClefUserDetails) {
-         return Optional.of((ClefUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+      if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof WyUserDetails) {
+         return Optional.of((WyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
       }
       return Optional.empty();
    }
 
    public String getUsername(){
-      Optional<ClefUserDetails> user = getCurrentUser();
-      return user.map(ClefUserDetails::getUsername).orElse("anonymousUser");
+      Optional<WyUserDetails> user = getCurrentUser();
+      return user.map(WyUserDetails::getUsername).orElse("anonymousUser");
    }
 
 
    public long getUserId(){
-      Optional<ClefUserDetails> user = getCurrentUser();
-      return user.map(ClefUserDetails::getUserId).orElse(-1L);
+      Optional<WyUserDetails> user = getCurrentUser();
+      return user.map(WyUserDetails::getUserId).orElse(-1L);
    }
 
    public boolean isSuperUser() {
-      Optional<ClefUserDetails> user = getCurrentUser();
-      return user.map(ClefUserDetails::isSuperUser).orElse(false);
+      Optional<WyUserDetails> user = getCurrentUser();
+      return user.map(WyUserDetails::isSuperUser).orElse(false);
    }
 
-   public Optional<ClefUser> getUser() {
-      Optional<ClefUserDetails> user = getCurrentUser();
-      return user.map(ClefUserDetails::getUser);
+   public Optional<WyUser> getUser() {
+      Optional<WyUserDetails> user = getCurrentUser();
+      return user.map(WyUserDetails::getUser);
    }
 
    public boolean hasRole(String role) {

@@ -1,7 +1,7 @@
 package com.ieor185.user.viewmodel;
 
-import com.ieor185.user.model.ClefUser;
-import com.ieor185.user.model.ClefUserDetails;
+import com.ieor185.user.model.WyUser;
+import com.ieor185.user.model.WyUserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntityViewModel implements Serializable {
+public class WyUserEntityViewModel implements Serializable {
 
     private long id;
     private String displayName;
@@ -27,15 +27,15 @@ public class UserEntityViewModel implements Serializable {
 
     private String email;
 
-    public static UserEntityViewModel anonymousUser() {
-        return new UserEntityViewModel(-1, "Anonymous User", "", "", 0L, "");
+    public static WyUserEntityViewModel anonymousUser() {
+        return new WyUserEntityViewModel(-1, "Anonymous User", "", "", 0L, "");
     }
 
-    public static UserEntityViewModel of(ClefUser user) {
-        return new UserEntityViewModel(user);
+    public static WyUserEntityViewModel of(WyUser user) {
+        return new WyUserEntityViewModel(user);
     }
 
-    public UserEntityViewModel(ClefUser user) {
+    public WyUserEntityViewModel(WyUser user) {
         setId(user.getId());
         setDisplayName(user.getDisplayName());
         setDescription(user.getDescription());
@@ -46,14 +46,14 @@ public class UserEntityViewModel implements Serializable {
 
 
     // added by May
-    public void addAttributes (ClefUser user) {
+    public void addAttributes (WyUser user) {
         this.id = user.getId();
         this.displayName = user.getDisplayName();
         this.description = user.getDescription();
         this.imageUrl = user.getImageUrl();
         this.memberSince = user.getCreatedTime().getTime();
     }
-    public void addAttributes (ClefUserDetails user) {
+    public void addAttributes (WyUserDetails user) {
         this.email = user.getEmail();
     }
 

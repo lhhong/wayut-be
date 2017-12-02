@@ -1,9 +1,9 @@
 package com.ieor185.component;
 
 
-import com.ieor185.user.model.ClefUser;
-import com.ieor185.user.model.ClefUserEntity;
-import com.ieor185.user.service.ClefUserService;
+import com.ieor185.user.model.WyUser;
+import com.ieor185.user.model.WyUserEntity;
+import com.ieor185.user.service.WyUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -35,21 +35,21 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
 //      }
       logger.info("Run loader...");
 
-      ClefUserService userService = context.getBean(ClefUserService.class);
+      WyUserService wyUserService = context.getBean(WyUserService.class);
 
       logger.info("Run users...");
-      setupUsers(userService);
-      setupAdmin(userService);
+      setupUsers(wyUserService);
+      setupAdmin(wyUserService);
    }
 
 
-   private void setupAdmin(ClefUserService userService) {
+   private void setupAdmin(WyUserService wyUserService) {
 
       String username = "admin";
       logger.info("Setup {}", username);
 
-      ClefUser admin;
-      Optional<ClefUser> userOptional = userService.findUserByUsername(username);
+      WyUser admin;
+      Optional<WyUser> userOptional = wyUserService.findUserByUsername(username);
       if(userOptional.isPresent()){
          admin = userOptional.get();
          String roles = admin.getRoles();
@@ -57,7 +57,7 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
             admin.setRoles("ROLE_USER,ROLE_ADMIN");
          }
       } else {
-         admin = new ClefUserEntity();
+         admin = new WyUserEntity();
          admin.setUsername("admin");
          admin.setRoles("ROLE_USER,ROLE_ADMIN");
          admin.setPassword("clef@2016");
@@ -66,21 +66,21 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
          admin.setAuthenticationSource("password");
       }
 
-      userService.save(admin);
+      wyUserService.save(admin);
    }
 
-   private void setupUsers(ClefUserService userService){
+   private void setupUsers(WyUserService wyUserService){
       for(int i=1; i <= 2; ++i){
 
          String username = "user" + i;
          logger.info("Setup {}", username);
 
-         ClefUser user;
-         Optional<ClefUser> userOptional = userService.findUserByUsername(username);
+         WyUser user;
+         Optional<WyUser> userOptional = wyUserService.findUserByUsername(username);
          if(userOptional.isPresent()) {
             user = userOptional.get();
          } else {
-            user = new ClefUserEntity();
+            user = new WyUserEntity();
             if(i == 1) {
                user.setEmail("clef.dev@gmail.com");
             } else {
@@ -94,7 +94,7 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
 
 	      user.setAuthenticationSource("password");
          user.setRoles("ROLE_USER");
-         userService.save(user);
+         wyUserService.save(user);
       }
    }
 

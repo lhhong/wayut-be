@@ -2,11 +2,11 @@ package com.ieor185.config;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ieor185.user.model.ClefUser;
-import com.ieor185.user.model.ClefUserDetails;
-import com.ieor185.user.model.ClefUserEntity;
-import com.ieor185.user.service.ClefUserDetailService;
-import com.ieor185.user.service.ClefUserService;
+import com.ieor185.user.model.WyUser;
+import com.ieor185.user.model.WyUserDetails;
+import com.ieor185.user.model.WyUserEntity;
+import com.ieor185.user.service.WyUserDetailService;
+import com.ieor185.user.service.WyUserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,9 +37,9 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 
 	public OAuth2RestOperations restTemplate;
 
-	private ClefUserDetailService userDetailService;
+	private WyUserDetailService wyUserDetailService;
 
-	private ClefUserService userService;
+	private WyUserService wyUserService;
 
 	private String authenticationSource;
 
@@ -70,15 +70,15 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 
 			UserDetails userDetails = null;
 			try {
-				ClefUserDetails clefUserDetails;
-				clefUserDetails = (ClefUserDetails) userDetailService.loadUserByUsername(authInfo.get("email").toLowerCase());
-				if (!clefUserDetails.getUser().getAuthenticationSource().equals(authenticationSource)) {
+				WyUserDetails wyUserDetails;
+				wyUserDetails = (WyUserDetails) wyUserDetailService.loadUserByUsername(authInfo.get("email").toLowerCase());
+				if (!wyUserDetails.getUser().getAuthenticationSource().equals(authenticationSource)) {
 //					throw new BadCredentialsException("User already registered with another authentication source");
 				}
-				clefUserDetails.setToken(accessToken);
-				userDetails = clefUserDetails;
+				wyUserDetails.setToken(accessToken);
+				userDetails = wyUserDetails;
 			} catch (UsernameNotFoundException e) {
-				ClefUser user = new ClefUserEntity();
+				WyUser user = new WyUserEntity();
 				user.setUsername(authInfo.get("email").toLowerCase());
 				user.setEmail(authInfo.get("email").toLowerCase());
 				user.setAuthenticationSource(authenticationSource);
@@ -90,8 +90,8 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 				if (authInfo.containsKey("picture")) {
 					user.setImageUrl(authInfo.get("picture"));
 				}
-				userService.save(user);
-				userDetails = new ClefUserDetails(accessToken, user);
+				wyUserService.save(user);
+				userDetails = new WyUserDetails(accessToken, user);
 			}
 
 			return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -101,12 +101,12 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 		}
 	}
 
-	public void setComponents(OAuth2RestTemplate restTemplate, ClefUserDetailService userDetailService,
-	                          ClefUserService userService, String authenticationSource) {
+	public void setComponents(OAuth2RestTemplate restTemplate, WyUserDetailService wyUserDetailService,
+	                          WyUserService wyUserService, String authenticationSource) {
 		this.restTemplate = restTemplate;
-		this.userDetailService = userDetailService;
+		this.wyUserDetailService = wyUserDetailService;
 		this.authenticationSource = authenticationSource;
-		this.userService = userService;
+		this.wyUserService = wyUserService;
 	}
 
 	private static class NoopAuthenticationManager implements AuthenticationManager {
