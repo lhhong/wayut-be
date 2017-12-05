@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -26,5 +27,9 @@ public class MeetupGroup {
 	private Date availableUntil = null;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<WyUser> members;
+	private Set<WyUser> members = new HashSet<>();
+
+	public void addMember(WyUser user) {
+		members.add(user);
+	}
 }

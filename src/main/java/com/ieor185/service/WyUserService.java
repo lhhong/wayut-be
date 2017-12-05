@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -52,6 +53,15 @@ public class WyUserService {
    public void updateFriends(String userId, Collection<String> friends) {
       WyUser user = wyUserRepo.findOne(userId);
       user.addFriends(friends);
+      wyUserRepo.save(user);
+   }
+
+   @Transactional
+   public void setStatus(String userId, String availableFor, long availableUntil) {
+      WyUser user = wyUserRepo.findOne(userId);
+      user.setAvailable(true);
+      user.setAvailableUntil(new Date(availableUntil));
+      user.setAvailableFor(availableFor);
       wyUserRepo.save(user);
    }
 
