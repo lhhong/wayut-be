@@ -1,11 +1,10 @@
 package com.ieor185.service;
 
 import com.ieor185.model.WyUser;
-import com.ieor185.repository.WyUserRepository;
+import com.ieor185.repository.WyUserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,7 +20,7 @@ public class TestFriendsService {
 	private static final String ANON_PHOTO = "some url";
 
 	@Autowired
-	private WyUserRepository wyUserRepository;
+	private WyUserRepo wyUserRepo;
 
 	private List<WyUser> testFriends = new ArrayList<>();
 
@@ -67,7 +66,7 @@ public class TestFriendsService {
 		testFriends.add(new WyUser("mock29", "Andrew", ANON_PHOTO, new HashSet<>()));
 		testFriends.add(new WyUser("mock30", "Andrew", ANON_PHOTO, new HashSet<>()));
 
-		wyUserRepository.save(testFriends);
+		wyUserRepo.save(testFriends);
 
 	}
 }

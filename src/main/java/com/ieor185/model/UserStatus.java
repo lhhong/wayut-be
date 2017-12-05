@@ -1,6 +1,7 @@
 package com.ieor185.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "user_status")
 public class UserStatus {
 
@@ -21,4 +23,8 @@ public class UserStatus {
 	private boolean available = false;
 	private Date availableUntil = null;
 	private String availableFor = "";
+
+	public UserStatus(String id) {
+		this.id = id;
+	}
 }

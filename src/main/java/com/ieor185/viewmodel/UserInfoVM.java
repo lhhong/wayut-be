@@ -1,6 +1,5 @@
 package com.ieor185.viewmodel;
 
-import com.ieor185.model.UserStatus;
 import com.ieor185.model.WyUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by Nick on 23-Jun-17.
@@ -23,12 +20,12 @@ public class UserInfoVM implements Serializable {
 
     private String id = "";
     private String name = "";
-    private String photo = "";
+    private String picture = "";
 
     private UserInfoVM(WyUser user) {
         id = user.getId();
         name = user.getName();
-        photo = user.getPhoto();
+        picture = user.getPicture();
     }
 
     public static UserInfoVM of(WyUser user) {
@@ -39,7 +36,7 @@ public class UserInfoVM implements Serializable {
         WyUser user = new WyUser();
         user.setId(id);
         user.setName(name);
-        user.setPhoto(photo);
+        user.setPicture(picture);
         return user;
     }
 }

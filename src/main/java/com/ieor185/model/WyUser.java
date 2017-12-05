@@ -25,7 +25,7 @@ public class WyUser {
 	private String id;
 
 	private String name = "";
-	private String photo = "";
+	private String picture = "";
 
 	@ElementCollection
 	private Set<String> friends = new HashSet<>();

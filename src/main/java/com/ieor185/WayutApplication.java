@@ -12,8 +12,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.concurrent.TimeUnit;
-
 
 /**
  * Created by xschen on 26/12/2016.

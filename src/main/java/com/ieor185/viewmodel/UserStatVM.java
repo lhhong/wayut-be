@@ -23,7 +23,7 @@ public class UserStatVM implements Serializable {
 
     private String id = "";
     private String name = "";
-    private String photo = "";
+    private String picture = "";
 
     private Set<String> friends = null;
 
@@ -34,7 +34,7 @@ public class UserStatVM implements Serializable {
     private UserStatVM(WyUser user, UserStatus status) {
         id = user.getId();
         name = user.getName();
-        photo = user.getPhoto();
+        picture = user.getPicture();
         friends = user.getFriends();
 
         available = status.isAvailable();
@@ -50,7 +50,7 @@ public class UserStatVM implements Serializable {
         WyUser user = new WyUser();
         user.setId(id);
         user.setName(name);
-        user.setPhoto(photo);
+        user.setPicture(picture);
         return user;
     }
 }
