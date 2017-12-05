@@ -1,7 +1,6 @@
 package com.ieor185.service;
 
 
-import com.ieor185.model.UserStatus;
 import com.ieor185.model.WyUser;
 import com.ieor185.repository.WyUserRepo;
 import com.ieor185.viewmodel.UserInfoVM;
@@ -37,7 +36,6 @@ public class WyUserService {
          Set<String> testFriends = testFriendsService.randomTestFriends(user.getId());
          WyUser toSave = user.toEntity();
          toSave.addFriends(testFriends);
-         UserStatus status = new UserStatus();
          wyUserRepo.save(toSave);
       }
    }

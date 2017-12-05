@@ -1,8 +1,6 @@
 package com.ieor185.service;
 
-import com.ieor185.model.UserStatus;
 import com.ieor185.model.WyUser;
-import com.ieor185.repository.UserStatusRepo;
 import com.ieor185.repository.WyUserRepo;
 import com.ieor185.viewmodel.UserStatVM;
 import org.slf4j.Logger;
@@ -24,24 +22,13 @@ public class FriendsService {
 	@Autowired
 	private WyUserRepo userRepo;
 
-	@Autowired
-	private UserStatusRepo userStatusRepo;
-
 	public List<UserStatVM> getAvailableFriends(String id) {
 
 		List<UserStatVM> friendList = new ArrayList<>();
 
 		WyUser user = userRepo.findOne(id);
 		Iterable<WyUser> friends = userRepo.findAll(user.getFriends());
-		Iterable<UserStatus> friendsStatus = userStatusRepo.findAll(user.getFriends());
-		friends.forEach(f -> {
-			friendsStatus.forEach(s -> {
-				if (f.getId().equals(s.getId())) {
-					friendList.add(UserStatVM.of(f, s));
-				}
-			});
-		});
-
+		friends.forEach(f -> friendList.add(UserStatVM.of(f)));
 		return friendList;
 	}
 }

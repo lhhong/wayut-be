@@ -1,12 +1,10 @@
 package com.ieor185.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -15,12 +13,14 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@Table(name = "meetup_group")
 public class MeetupGroup {
 
 	@Id
 	@GeneratedValue
 	private long id;
 
-	@ElementCollection
-	private Set<String> users;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<WyUser> users;
 }

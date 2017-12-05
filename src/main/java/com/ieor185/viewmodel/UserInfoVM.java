@@ -33,11 +33,7 @@ public class UserInfoVM implements Serializable {
     }
 
     public WyUser toEntity() {
-        WyUser user = new WyUser();
-        user.setId(id);
-        user.setName(name);
-        user.setPicture(picture);
-        return user;
+        return new WyUser(id, name, picture);
     }
 }
 

@@ -35,36 +35,36 @@ public class TestFriendsService {
 	}
 
 	public void initialize() {
-		testFriends.add(new WyUser("mock1", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock2", "Jade", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock3", "Crystal", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock4", "Jim", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock5", "Harry", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock6", "Benjamin", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock7", "Jordan", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock8", "Jackie", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock9", "Anna", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock10", "Katy", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock11", "Nicole", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock12", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock13", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock14", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock15", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock16", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock17", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock18", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock19", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock20", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock21", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock22", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock23", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock24", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock25", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock26", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock27", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock28", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock29", "Andrew", ANON_PHOTO, new HashSet<>()));
-		testFriends.add(new WyUser("mock30", "Andrew", ANON_PHOTO, new HashSet<>()));
+		testFriends.add(new WyUser("mock1", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock2", "Jade", ANON_PHOTO));
+		testFriends.add(new WyUser("mock3", "Crystal", ANON_PHOTO));
+		testFriends.add(new WyUser("mock4", "Jim", ANON_PHOTO));
+		testFriends.add(new WyUser("mock5", "Harry", ANON_PHOTO));
+		testFriends.add(new WyUser("mock6", "Benjamin", ANON_PHOTO));
+		testFriends.add(new WyUser("mock7", "Jordan", ANON_PHOTO));
+		testFriends.add(new WyUser("mock8", "Jackie", ANON_PHOTO));
+		testFriends.add(new WyUser("mock9", "Anna", ANON_PHOTO));
+		testFriends.add(new WyUser("mock10", "Katy", ANON_PHOTO));
+		testFriends.add(new WyUser("mock11", "Nicole", ANON_PHOTO));
+		testFriends.add(new WyUser("mock12", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock13", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock14", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock15", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock16", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock17", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock18", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock19", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock20", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock21", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock22", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock23", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock24", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock25", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock26", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock27", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock28", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock29", "Andrew", ANON_PHOTO));
+		testFriends.add(new WyUser("mock30", "Andrew", ANON_PHOTO));
 
 		wyUserRepo.save(testFriends);
 
