@@ -22,5 +22,5 @@ public class MeetupGroup {
 	private long id;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<WyUser> users;
+	private Set<WyUser> members;
 }

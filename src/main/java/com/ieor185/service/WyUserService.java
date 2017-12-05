@@ -37,6 +37,7 @@ public class WyUserService {
          WyUser toSave = user.toEntity();
          toSave.addFriends(testFriends);
          wyUserRepo.save(toSave);
+         testFriends.forEach(f -> addFriend(f, user.getId()));
       }
    }
 

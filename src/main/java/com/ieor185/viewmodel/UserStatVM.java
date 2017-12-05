@@ -24,6 +24,7 @@ public class UserStatVM implements Serializable {
     private String picture = "";
 
     private boolean available = false;
+    private boolean inGroup = false;
     private Date availableUntil = null;
     private String availableFor = "";
 
@@ -32,6 +33,7 @@ public class UserStatVM implements Serializable {
         name = user.getName();
         picture = user.getPicture();
 
+        inGroup = user.isInGroup();
         available = user.isAvailable();
         availableUntil = user.getAvailableUntil();
         availableFor = user.getAvailableFor();

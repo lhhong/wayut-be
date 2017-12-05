@@ -31,6 +31,7 @@ public class WyUser {
 	private Set<String> friends = new HashSet<>();
 
 	private boolean available = false;
+	private boolean inGroup = false;
 	private Date availableUntil = null;
 	private String availableFor = "";
 
